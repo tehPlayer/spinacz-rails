@@ -1,4 +1,4 @@
-Freshmail
+Spinacz Rails
 ===================
 
 This is a Rails Gem for Spinacz API.
