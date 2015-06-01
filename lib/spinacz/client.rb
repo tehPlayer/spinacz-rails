@@ -97,10 +97,15 @@ module Spinacz
         end
 
         response = conn.send(call_type) do |req|
-          req.url endpoint
+          if call_type == :get 
+            req.url endpoint, json_data
+          else
+            req.url endpoint
+            req.body = json_data_converted
+          end
+
           req.headers['Content-Type'] = 'application/json'
           req.headers['Authorization'] = @token if @token.present?
-          req.body = json_data_converted if req.method == :post
         end
 
         body = JSON.parse(response.body)
