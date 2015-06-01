@@ -104,7 +104,7 @@ module Spinacz
             req.body = json_data_converted
           end
 
-          req.headers['Content-Type'] = 'application/json'
+          # req.headers['Content-Type'] = 'application/json'
           req.headers['Authorization'] = @token if @token.present?
         end
 
