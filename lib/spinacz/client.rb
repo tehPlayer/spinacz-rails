@@ -103,7 +103,13 @@ module Spinacz
           req.body = json_data_converted if req.method == :post
         end
 
-        JSON.parse(response.body)
+        body = JSON.parse(response.body)
+
+        if body['error'].nil?
+          body['success']
+        else
+          raise Spinacz::ParametersInvalidError, 'wrong parameters provided'
+        end
       end
 
       def check_credentials
