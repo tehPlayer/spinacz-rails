@@ -75,7 +75,7 @@ Add tests.
 Add better interface for response.
 Add validations.
 
-## Licence
+## License
 
 Copyright (c) 2015 Marcin Adamczyk, released under the MIT license
 
