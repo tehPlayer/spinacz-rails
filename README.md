@@ -29,7 +29,7 @@ or
 spinacz = Spinacz::Client.new(token: 'authorization_token_from_login')
 ```
 
-or, if you want only use non-authorized methods:
+or, if you want to use only public methods without authorization:
 
 ```ruby
 spinacz = Spinacz::Client.new
