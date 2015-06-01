@@ -5,11 +5,11 @@ module Spinacz
     URL = 'https://spinacz.pl'
 
     def initialize(credentials = {})
-      @email = credentials[:email] || self.class.email || ENV['SPINACZ_EMAIL']
+      @email = credentials[:email] || ENV['SPINACZ_EMAIL']
       @email = @email.strip if @email
-      @password = credentials[:password] || self.class.password || ENV['SPINACZ_PASSWORD']
+      @password = credentials[:password] || ENV['SPINACZ_PASSWORD']
       @password = @password.strip if @password
-      @token = credentials[:token] || self.class.token || ENV['SPINACZ_TOKEN']
+      @token = credentials[:token] || ENV['SPINACZ_TOKEN']
       @token = @token.strip if @token
     end
 
