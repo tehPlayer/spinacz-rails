@@ -1,18 +1,18 @@
 Freshmail
 ===================
 
-This is a Rails Gem for Freshmail REST API.
+This is a Rails Gem for Spinacz API.
 
 ## Instalation
 
 ```console
-gem install freshmail
+gem install spinacz
 ```
 
 or add it to your `Gemfile`:
 
 ```ruby
-gem 'freshmail'
+gem 'spinacz'
 ```
 
 ## Usage
@@ -20,43 +20,48 @@ gem 'freshmail'
 Create instance of gem:
 
 ```ruby
-freshmail = Freshmail::Client.new('YOUR_API_KEY', 'YOUR_API_SECRET')
+spinacz = Spinacz::Client.new(email: 'your@email.here', password: 'P4ssw0rd_H3r3')
 ```
 
-After that, you can access Freshmail methods, for example:
+or
 
 ```ruby
-my_lists = freshmail.lists
-my_first_list_hash = my_lists['lists'].first['subscriberListHash']
-my_last_list_hash = my_lists['lists'].last['subscriberListHash']
-
-freshmail.add_subscriber(email: 'test@test.net', list: my_first_list_hash, state: 1)
-
-freshmail.batch_add_subscriber(subscribers: [{email: 'test@test.net'}, {email: 'test2@test.net'}], list: my_last_list_hash, state: 1)
-
-freshmail.subscriber(email: 'test@test.net', list: my_first_list_hash)
-freshmail.subscribers(subscribers: [{email: 'test2@test.net'}], list: my_last_list_hash)
-
-freshmail.delete_subscriber(email: 'test@test.net', list: my_first_list_hash)
-freshmail.batch_delete_subscriber(subscribers: [{email: 'test@test.net'}, {email: 'test2@test.net'}], list: my_last_list_hash)
+spinacz = Spinacz::Client.new(token: 'authorization_token_from_login')
 ```
 
-Available methods:
+or, if you want only use non-authorized methods:
 
 ```ruby
-freshmail.ping
-freshmail.mail(...)
-freshmail.subscriber(...)
-freshmail.subscribers(...)
-freshmail.add_subscriber(...)
-freshmail.edit_subscriber(...)
-freshmail.batch_add_subscriber(...)
-freshmail.delete_subscriber(...)
-freshmail.batch_delete_subscriber(...)
-freshmail.lists
-freshmail.create_list(...)
-freshmail.update_list(...)
-freshmail.delete_list(...)
+spinacz = Spinacz::Client.new
+```
+
+After that, you can access Spinacz methods, for example:
+
+```ruby
+spinacz.login
+# login method will set token to spinacz API automatically, to prevent multiple authorizations
+spinacz.get_packages_templates 
+# this will return whole response from API
+```
+
+Available methods (attributes as stated in Spinacz API documentation):
+
+```ruby
+    spinacz.login
+    spinacz.add_package_DHL({...})
+    spinacz.add_package_DPD({...})
+    spinacz.add_package_FEDEX({...})
+    spinacz.add_package_GLS({...})
+    spinacz.add_package_INPOST({...})
+    spinacz.add_package_KEX({...})
+    spinacz.add_package_POCZTA({...})
+    spinacz.add_package_UPS({...})
+    spinacz.cancel({...})
+    spinacz.get_packages_templates
+    spinacz.get_paczkomaty({...})
+    spinacz.get_placowki({...})
+    spinacz.get_send_points
+    spinacz.pickup({...})
 ```
 
 ## Contribution
@@ -66,8 +71,9 @@ Thank you for help.
 
 ## TODO
 
-Add more methods.
 Add tests.
+Add better interface for response.
+Add validations.
 
 ## Licence
 

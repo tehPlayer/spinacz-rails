@@ -13,7 +13,7 @@ module Spinacz
       @token = @token.strip if @token
     end
 
-    def test
+    def login
       check_credentials
     end
 
