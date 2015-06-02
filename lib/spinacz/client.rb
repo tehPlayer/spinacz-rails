@@ -116,13 +116,13 @@ module Spinacz
         if body['error'].nil?
           body['success']
         else
-          raise Spinacz::ParametersInvalidError, 'wrong parameters provided'
+          raise Spinacz::ParametersInvalidError, "Wrong parameters provided. Full error response: #{body['error']}"
         end
       end
 
       def check_credentials
         unless (@password.present? and @email.present?) or @token.present?
-          raise Spinacz::CredentialsMissingError, 'email with password or token are missing'
+          raise Spinacz::CredentialsMissingError, 'Email with password or token are missing.'
         end
 
         unless @token.present?
