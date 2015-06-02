@@ -123,7 +123,7 @@ module Spinacz
         end
 
         unless @token.present?
-          authorization = call_api(:get, 'login', {email: @email, password: @password})
+          authorization = call_api(:get, 'login', {email: @email, password: Digest::SHA256.hexdigest(@password)})
           if authorization['success'].present?
             @token = authorization['success']['hash'] 
           else
