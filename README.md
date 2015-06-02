@@ -35,6 +35,12 @@ or, if you want to use only public methods without authorization:
 spinacz = Spinacz::Client.new
 ```
 
+You can also use test mode API adding attribute `test` to initializer:
+
+```ruby
+spinacz = Spinacz::Client.new(email: 'your@email.here', password: 'P4ssw0rd_H3r3', test: true)
+```
+
 After that, you can access Spinacz methods, for example:
 
 ```ruby
