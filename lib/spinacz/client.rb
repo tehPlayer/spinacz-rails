@@ -1,8 +1,9 @@
 module Spinacz
   class Client
-    attr_accessor :email, :password, :token
+    attr_accessor :email, :password, :token, :test
 
     URL = 'https://spinacz.pl'
+    TEST_URL = 'https://test.spinacz.pl'
 
     def initialize(credentials = {})
       @email = credentials[:email] || ENV['SPINACZ_EMAIL']
@@ -11,6 +12,7 @@ module Spinacz
       @password = @password.strip if @password
       @token = credentials[:token] || ENV['SPINACZ_TOKEN']
       @token = @token.strip if @token
+      @test = credentials[:test]
     end
 
     def login
@@ -89,8 +91,9 @@ module Spinacz
       def call_api(call_type, get_data, json_data = nil)
         json_data_converted = json_data ? json_data.to_json : ''
         endpoint = "/api/v1/#{get_data}"
+        url = @test ? TEST_URL : URL
 
-        conn = Faraday.new(:url => URL) do |faraday|
+        conn = Faraday.new(url: url) do |faraday|
           faraday.request  :url_encoded
           # faraday.response :logger
           faraday.adapter  Faraday.default_adapter
